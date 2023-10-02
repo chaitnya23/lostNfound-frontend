@@ -9,7 +9,7 @@ import LoadingPage from '../components/loading-page';
 
 export default function FoundItemsPage() {
 
-  const [foundItems, setfoundItems] = useState(null);
+  const [foundItems, setfoundItems] = useState([]);
   const [searchTerm, setsearchTerm] = useState(null);
   const [loading, setloading] = useState(false);
 
@@ -86,6 +86,14 @@ export default function FoundItemsPage() {
         }
       </div>
 
+      {
+        foundItems.length==0 &&
+        (
+          <div className=' flex w-full h-[20rem] items-center justify-center'>
+          <p className='text-3xl  font-bold'>Oops.. Don't have any Found Items here Now...🔎</p>
+          </div>
+        )
+      }
       <div className='lost-items-box md:grid grid-cols-3 gap-5 p-3 h-[100vh] overflow-y-scroll overflow-hidden '>
         <LoadingPage show={loading} />
         {

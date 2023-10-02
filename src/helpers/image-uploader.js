@@ -2,7 +2,7 @@ import axios from "axios";
 
 const uploadImage = async(fileData) =>{
     
-    if(!fileData) return null;
+    if(!fileData) return "";
     try {
      
             const res = await axios.post(
@@ -12,8 +12,6 @@ const uploadImage = async(fileData) =>{
  
             if(res.data) return res.data.url;
            
-      
-
     } catch (error) {
 
         console.log("error :", error.message);

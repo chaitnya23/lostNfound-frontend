@@ -24,23 +24,25 @@ export const auth = firebase.auth();
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 
 // user context
-export const signInWithGoogle = (setuser,setenableLoginPopup, roomNo, mobileNo, islogin)=>{
+export const signInWithGoogle = (setuser,setenableLoginPopup)=>{
 
     auth.signInWithPopup(googleProvider).then((res)=>{
         // console.log(res.user._delegate.UserImpl);
         // setuser(res.user.)
         const {photoURL,email,displayName} = res.user;
+        // console.log(photoURL,email,displayName);
         if(!email.includes("@iiitdwd.ac.in")){
             toast.error("use collage email id only!!");
-            return;
+            return null;
         }
-        setuser({profilePic:photoURL,email,name:displayName, roomNo, contact:mobileNo});
-        setenableLoginPopup(false);
 
-        loginUser({profilePic:photoURL,email,name:displayName, roomNo, contact:mobileNo},setuser);
-        // else signupUser({profilePic:photoURL,email,name:displayName, roomNo, contact:mobileNo},setuser);
+        loginUser({profilePic:photoURL,email,name:displayName},setuser);
+        setuser({profilePic:photoURL,email,name:displayName});
+        setenableLoginPopup(false);
+        return {photoURL,email,displayName};
         
     }).catch((e)=>{
         console.log(e);
+        return null;
     })
 }

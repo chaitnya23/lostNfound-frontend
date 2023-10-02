@@ -5,8 +5,8 @@ import { toast } from 'react-toastify';
 const loginUser  = async(user,setuser)=>{
     try {
         
-        const res = await axios.put(User.login, {email:user.email});
-        // console.log(res);
+        const res = await axios.post(User.signin, {...user});
+         console.log(" result",res);
  
         if(res){
             setuser({...user, _id:res.data.data._id});

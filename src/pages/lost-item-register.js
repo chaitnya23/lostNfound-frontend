@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 export default function LostItemRegisterPage() {
     const navigate = useNavigate();
 
-    const [itemDetails, setitemDetails] = useState({});
+    const [itemDetails, setitemDetails] = useState({mobileNo:""});
     const [imgFile, setimgFile] = useState("");
     const [imgData, setimgData] = useState(null);
     const [loading, setloading] = useState(false);
@@ -45,14 +45,24 @@ export default function LostItemRegisterPage() {
         setitemDetails({ ...itemDetails, [name]: value });
     };
 
+    const isMobileNoValid = (number)=>{
+
+        var s = String(number);
+        return s.length===10;
+    }
     const registerLostItem = async () => {
         // console.log("user is ", user);
+
+        if((itemDetails.owner_mobileNo>1 && !isMobileNoValid(itemDetails.owner_mobileNo)) || !itemDetails.owner_roomNo || !itemDetails.name){
+            toast.error(" enter valid details");
+            return;
+        }
         setloading(true);
         try {
+        
             const imgUrl = await uploadImage(imgData);
-            console.log(imgUrl);
-            if (imgUrl) {
-                const res = await axios.post(LostItem.register, {
+            
+                const res = await axios.post(LostItem.register, { 
                     ...itemDetails,
                     imgSrc: imgUrl ? imgUrl : "",
                     owner: user._id,
@@ -61,7 +71,7 @@ export default function LostItemRegisterPage() {
                 toast.success("your lost object created successfully..");
 
                 navigate("/lost-items");
-            }
+            
         } catch (error) {
             setloading(false);
 

@@ -1,9 +1,10 @@
-const url = "http://localhost:8080";
+// const url = "https://loast-nfound-backend.vercel.app";
+const url = "http://localhost:8080"
 
 const User = {
 
     login:`${url}/api/user/login`,
-    signup:`${url}/api/user/signup`,
+    signin:`${url}/api/user/signup`,
     sessionAuth:`${url}/api/user/session/auth`
 }
 

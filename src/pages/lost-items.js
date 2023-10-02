@@ -9,7 +9,7 @@ import LoadingPage from '../components/loading-page';
 
 export default function LostItemsPage() {
 
-  const [lostItems, setlostItems] = useState(null);
+  const [lostItems, setlostItems] = useState([]);
   const [searchTerm, setsearchTerm] = useState(null);
   const [loading, setloading] = useState(false);
   const [showSearch, setshowSearch] = useState(null);
@@ -98,12 +98,16 @@ export default function LostItemsPage() {
       <div className='relative lost-items-box md:grid grid-cols-3 gap-5 p-3 h-[100vh] overflow-y-scroll overflow-hidden '>
         <LoadingPage show={loading} />
         {
-          lostItems && lostItems.map((ele, idx) => {
+          lostItems.length>0 ? lostItems.map((ele, idx) => {
 
             return (
                 <ItemSlide {...ele} key={idx} isFoundObj={false} creater={ele.owner} />  
             )
-          })
+          }):(
+            <div className='h-full flex item-center justify-center'>
+            <p className='text-3xl'>Oops.. Dont have any Lost Items here ...</p>
+            </div>
+          )
         }
       </div>
     </>

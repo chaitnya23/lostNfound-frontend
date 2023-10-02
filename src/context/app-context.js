@@ -13,13 +13,14 @@ export default function AppContextWrapper({children}) {
     
     useEffect(() => {
       const id = localStorage.getItem("_id");
+      console.log("id ",id);
       if(!id) return;
 
       const getUser = async()=>{
 
         try {
           const res = await axios.get(`${User.sessionAuth}/${id}`);
-          console.log("user is ",res.data);
+          console.log("user is ",res);
           setuser(res.data);
           setenableLoginPopup(false);
 
