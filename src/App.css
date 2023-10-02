@@ -1,38 +1,30 @@
-.App {
-  text-align: center;
+.opt-list >div{
+  @apply hover:border-r-[4px] hover:border-r-orange-400 hover:bg-[#394c84eb] cursor-pointer ;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.lost-item-register-page{
+  background: url('./asset/wave.svg');
+  background-position: bottom;
+  scrollbar-width: none;
+  background-repeat: no-repeat;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.login-img-box{
+  background: url('./asset/login-img.svg');
+
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.lost-items-box::-webkit-scrollbar {
+  width: 0;
 }
 
-.App-link {
-  color: #61dafb;
+.location-selector option{
+   outline: none;
+   padding: 4px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+
+.des-box-btn:hover .des-box{
+  width: 20rem;
 }
